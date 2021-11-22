@@ -18,7 +18,7 @@ module.exports.getNotes = (req, res, next) => {
 module.exports.createNewNote = (req, res, next) => {
   const body = req.body;
 
-  if (body.hasOwnProperty('shop') && body.hasOwnProperty('amount')) {
+  if (body.shop && body.amount && body.date) {
     const note = new Note(req.body);
     note.save().then(result => {
       res.send(result);
@@ -31,7 +31,7 @@ module.exports.createNewNote = (req, res, next) => {
 module.exports.changeNoteInfo = (req, res, next) => {
   const body = req.body;
 
-  if (body.hasOwnProperty('_id') && (body.hasOwnProperty('shop') || body.hasOwnProperty('amount'))) {
+  if (body.hasOwnProperty('shop') && body.hasOwnProperty('date') && body.hasOwnProperty('amount')) {
     Note.updateOne({_id: req.query._id}, req.body).then(result => {
       res.send(result);
     });
