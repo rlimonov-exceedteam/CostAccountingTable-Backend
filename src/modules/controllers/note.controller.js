@@ -31,7 +31,7 @@ module.exports.createNewNote = (req, res, next) => {
 module.exports.changeNoteInfo = (req, res, next) => {
   const body = req.body;
 
-  if (body.hasOwnProperty('shop') && body.hasOwnProperty('amount')) {
+  if (body.shop && body.amount && body.date && body._id) {
     Note.updateOne({_id: req.query._id}, req.body).then(result => {
       res.send(result);
     });
