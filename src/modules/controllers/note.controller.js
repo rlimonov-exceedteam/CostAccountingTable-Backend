@@ -18,7 +18,7 @@ module.exports.getNotes = (req, res, next) => {
 module.exports.createNewNote = (req, res, next) => {
   const body = req.body;
 
-  if (body.shop && body.amount && body.date) {
+  if (Object.keys(body)) {
     const note = new Note(req.body);
     note.save().then(result => {
       res.send(result);
